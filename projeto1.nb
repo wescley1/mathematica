@@ -1,0 +1,562 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     21567,        554]
+NotebookOptionsPosition[     20274,        509]
+NotebookOutlinePosition[     20615,        524]
+CellTagsIndexPosition[     20572,        521]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["Para come\[CCedilla]ar, devemos limpar todos os valores em \
+mem\[OAcute]ria. ", "Text",
+ CellChangeTimes->{{3.685109186824624*^9, 3.6851091950044384`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\n"}]], "Input",
+ CellChangeTimes->{{3.6851091986770706`*^9, 3.685109211083844*^9}, 
+   3.6851103974421225`*^9}],
+
+Cell["\<\
+A velocidade de escape em  um planeta \[EAcute] a velocidade inicial para que \
+seja poss\[IAcute]vel escapar da influ\[EHat]ncia gravitacional do planeta em \
+quest\[ATilde]o, indo, assim, ao infinito. Em outras palavras, \[EAcute] a \
+velocidade em que a energia cin\[EAcute]tica de um corpo \[EAcute] igual \
+\[AGrave] energia potencial do campo gravitacional. Em termos \
+matem\[AAcute]ticos, definimos as energias como:\
+\>", "Text",
+ CellChangeTimes->{{3.6851092298932595`*^9, 3.6851092780254498`*^9}, {
+  3.6851093206227407`*^9, 3.6851093802867365`*^9}, {3.6851094135553803`*^9, 
+  3.6851095025616918`*^9}, {3.6851111964386296`*^9, 3.6851112210591364`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ECinetica", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "/", "2"}], ")"}], "m", " ", 
+    RowBox[{"v", "^", "2"}]}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"EGravitacional", "=", 
+   RowBox[{
+    RowBox[{"-", "G"}], " ", "M", " ", 
+    RowBox[{"m", "/", "r"}]}]}], " ", ";"}]}], "Input",
+ CellChangeTimes->{{3.6851095585445833`*^9, 3.6851095603408623`*^9}}],
+
+Cell["\<\
+E a velocidade de escape ser\[AAcute] a velocidade na qual as duas magnitudes \
+s\[ATilde]o iguais, ou que a soma delas seja zero\
+\>", "Text",
+ CellChangeTimes->{{3.6851095669145336`*^9, 3.685109584649145*^9}, {
+  3.685109696956662*^9, 3.685109702850855*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Emec", "=", 
+   RowBox[{"ECinetica", "+", "EGravitacional"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"eq", "=", 
+  RowBox[{"Emec", "\[Equal]", "0"}]}]}], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    FractionBox[
+     RowBox[{"G", " ", "m", " ", "M"}], "r"]}], "+", 
+   FractionBox[
+    RowBox[{"m", " ", 
+     SuperscriptBox["v", "2"]}], "2"]}], "\[Equal]", "0"}]], "Output",
+ CellChangeTimes->{{3.6851103904387264`*^9, 3.6851104011277266`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Tendo as quantidades matem\[AAcute]ticas bem definidas, tudo que resta \
+\[EAcute] fazer os c\[AAcute]lculos. As listas RaioCorpos, MassaCorpos e \
+NomeCorpos, cont\[EAcute]m, respectivamente, os raios, massas e nomes de cada \
+corpo celeste envolvido no c\[AAcute]lculo. Os dados cont\[EAcute]m apenas as \
+quantidades de magnitude de para que possam ser usados posteriormente na \
+constru\[CCedilla]\[ATilde]o do gr\[AAcute]fico.\
+\>", "Text",
+ CellChangeTimes->{{3.6851100927662477`*^9, 3.685110149531615*^9}, {
+  3.6851110777611275`*^9, 3.685111111811335*^9}}],
+
+Cell[BoxData[
+ RowBox[{"<<", " ", "Units`"}]], "Input",
+ CellChangeTimes->{{3.684612980341844*^9, 3.684612984365705*^9}, {
+  3.684613401776357*^9, 3.684613409864814*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"RaioCorpos", " ", "=", " ", 
+   RowBox[{"QuantityMagnitude", "[", 
+    RowBox[{"UnitConvert", "[", 
+     RowBox[{"Flatten", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"PlanetData", "[", 
+         RowBox[{
+          RowBox[{"PlanetData", "[", "]"}], ",", "\"\<Radius\>\""}], "]"}], 
+        ",", 
+        RowBox[{"PlanetaryMoonData", "[", 
+         RowBox[{"\"\<Moon\>\"", ",", "\"\<Radius\>\""}], "]"}], ",", 
+        RowBox[{"StarData", "[", 
+         RowBox[{"\"\<Sun\>\"", ",", "\"\<Radius\>\""}], "]"}]}], "}"}], 
+      "]"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MassaCorpos", " ", "=", " ", 
+   RowBox[{"QuantityMagnitude", "[", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"PlanetData", "[", 
+        RowBox[{
+         RowBox[{"PlanetData", "[", "]"}], ",", "\"\<Mass\>\""}], "]"}], ",", 
+       RowBox[{"PlanetaryMoonData", "[", 
+        RowBox[{"\"\<Moon\>\"", ",", "\"\<Mass\>\""}], "]"}], ",", 
+       RowBox[{"StarData", "[", 
+        RowBox[{"\"\<Sun\>\"", ",", "\"\<Mass\>\""}], "]"}]}], "}"}], "]"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NomeCorpos", " ", "=", " ", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Mercury\>\"", ",", "\"\<Venus\>\"", ",", "\"\<Earth\>\"", ",", 
+      "\"\<Mars\>\"", ",", "\"\<Jupiter\>\"", ",", "\"\<Saturn\>\"", ",", 
+      "\"\<Uranus\>\"", ",", "\"\<Neptune\>\"", ",", "\"\<Moon\>\"", ",", 
+      "\"\<Sun\>\""}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6846122306946735`*^9, 3.6846122736219797`*^9}, 
+   3.6846127322656717`*^9, {3.6846128476697893`*^9, 3.684612859537026*^9}, {
+   3.6846129515166335`*^9, 3.6846130254260178`*^9}, {3.6846130980737166`*^9, 
+   3.68461310077458*^9}, {3.6850977458120794`*^9, 3.685097774734629*^9}, {
+   3.685097825304817*^9, 3.685097825555975*^9}, {3.685098134652737*^9, 
+   3.6850981813160305`*^9}, 3.685098215738448*^9, {3.6850982816277695`*^9, 
+   3.6850982844698067`*^9}, {3.685111633426891*^9, 3.685111684279053*^9}}],
+
+Cell["\<\
+Como o que nos interessa saber \[EAcute] a velocidade podemos resolver a equa\
+\[CCedilla]\[ATilde]o que relaciona as energias isolando a quantidade \
+desejada, obtendo a seguinte equa\[CCedilla]\[ATilde]o:\
+\>", "Text",
+ CellChangeTimes->{{3.685110229876748*^9, 3.685110234653145*^9}, {
+  3.685110440737529*^9, 3.685110486094797*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"solucao", "=", 
+  RowBox[{
+   RowBox[{"Solve", "[", 
+    RowBox[{"eq", ",", "v"}], "]"}], "[", 
+   RowBox[{"[", "2", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{
+  3.685098294683072*^9, {3.685110384316371*^9, 3.685110412308679*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"v", "\[Rule]", 
+   FractionBox[
+    RowBox[{
+     SqrtBox["2"], " ", 
+     SqrtBox["G"], " ", 
+     SqrtBox["M"]}], 
+    SqrtBox["r"]]}], "}"}]], "Output",
+ CellChangeTimes->{3.685110412555853*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<PhysicalConstants`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.6847175507167273`*^9, 3.6847175748046455`*^9}, {
+   3.6847176654120417`*^9, 3.6847176704101763`*^9}, 3.6850983200775623`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"valores", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"G", "\[Rule]", "GravitationalConstant"}], ",", 
+     RowBox[{"Newton", "\[Rule]", 
+      RowBox[{"Kilogram", "  ", "*", 
+       RowBox[{"Meter", "/", 
+        RowBox[{"Second", "^", "2"}]}]}]}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.684613826599635*^9, 3.6846138723452063`*^9}, {
+  3.684614043656347*^9, 3.68461404597857*^9}, {3.6847175672643085`*^9, 
+  3.6847176268468833`*^9}, {3.684717677857467*^9, 3.6847176911473703`*^9}, {
+  3.6847185031857953`*^9, 3.6847185154487724`*^9}}],
+
+Cell["\<\
+Como foi requisitado montar uma fun\[CCedilla]\[ATilde]o para \
+obten\[CCedilla]\[ATilde]o dos valores, ela foi definida como fun\[CCedilla]\
+\[ATilde]o de massa e raio.\
+\>", "Text",
+ CellChangeTimes->{{3.685110779486657*^9, 3.6851108503696327`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"vel", "[", 
+    RowBox[{"r_", ",", "M_"}], "]"}], "=", " ", 
+   RowBox[{
+    RowBox[{"v", " ", "/.", " ", "solucao"}], " ", "//.", " ", "valores"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6846137349220705`*^9, 3.6846137651249514`*^9}, {
+   3.684613882833642*^9, 3.6846138985468683`*^9}, {3.6847181003499155`*^9, 
+   3.684718106472269*^9}, 3.684718567392584*^9, {3.6850983333019633`*^9, 
+   3.6850983348420625`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Velocidades", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"vel", "[", 
+     RowBox[{
+      RowBox[{"RaioCorpos", " ", "Meter"}], ",", 
+      RowBox[{"MassaCorpos", " ", "Kilogram"}]}], "]"}], " ", "//", 
+    "PowerExpand"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6846137679469395`*^9, 3.6846137782632627`*^9}, {
+   3.684613889884734*^9, 3.6846139134972253`*^9}, {3.6846139954004254`*^9, 
+   3.684614015224519*^9}, {3.684614050213582*^9, 3.684614051280338*^9}, {
+   3.6847125947968607`*^9, 3.68471259862699*^9}, 3.684713842324565*^9, 
+   3.6847177878540535`*^9, {3.6847186315326824`*^9, 3.6847186376420107`*^9}, 
+   3.6850983653156977`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"dadosTabela", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{"{", 
+     RowBox[{"NomeCorpos", ",", 
+      RowBox[{"RaioCorpos", " ", "Meter"}], ",", 
+      RowBox[{"MassaCorpos", " ", "Kilogram"}], ",", "Velocidades"}], "}"}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.684714815933304*^9, 3.684714841768149*^9}, 
+   3.684714936528949*^9, {3.6847177779301467`*^9, 3.6847177829047127`*^9}, {
+   3.6847178266017895`*^9, 3.684717847676196*^9}, {3.6847181152745295`*^9, 
+   3.6847181169216986`*^9}, {3.684718708997999*^9, 3.6847187156106853`*^9}, {
+   3.6847947368902807`*^9, 3.68479473850443*^9}, {3.6850982353799353`*^9, 
+   3.685098239325083*^9}, 3.6850983738697605`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TableForm", "[", 
+  RowBox[{"dadosTabela", ",", 
+   RowBox[{"TableHeadings", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Nome do Corpo\>\"", ",", "\"\<Raio dos Corpos\>\"", ",", " ", 
+        "\"\<Massa dos Corpos\>\"", ",", "\"\<Velocidade\>\""}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "}"}]}], ",", 
+   RowBox[{"TableHeadings", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"Right", ",", "Bottom"}], "}"}]}], ",", " ", 
+   RowBox[{"TableDirections", "\[Rule]", "Row"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.684714942334066*^9, 3.684714999487463*^9}, {
+  3.6847152926389256`*^9, 3.684715299499688*^9}, {3.684715369009779*^9, 
+  3.684715375295248*^9}, {3.684718123738448*^9, 3.6847181270287943`*^9}, {
+  3.6847947424685044`*^9, 3.6847947462440214`*^9}, {3.6850982450721684`*^9, 
+  3.6850982523633747`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\[Null]",
+       ShowStringCharacters->False], 
+      TagBox["\<\"Nome do Corpo\"\>",
+       HoldForm], 
+      TagBox["\<\"Raio dos Corpos\"\>",
+       HoldForm], 
+      TagBox["\<\"Massa dos Corpos\"\>",
+       HoldForm], 
+      TagBox["\<\"Velocidade\"\>",
+       HoldForm]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Mercury\"\>", 
+      RowBox[{"2.4396999999999999999999892`5.*^6", " ", "Meter"}], 
+      RowBox[{"3.30104`6.*^23", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"4249.857706854149`", " ", "Meter"}], "Second"]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Venus\"\>", 
+      RowBox[{"6.0518500000000000000000217`5.*^6", " ", "Meter"}], 
+      RowBox[{"4.867320000000000000000001`6.*^24", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"10361.39144339414`", " ", "Meter"}], "Second"]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Earth\"\>", 
+      RowBox[{
+      "6.367444657100000000000007`8.299868708313456*^6", " ", "Meter"}], 
+      RowBox[{"5.9721986`8.*^24", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"11189.269653384912`", " ", "Meter"}], "Second"]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Mars\"\>", 
+      RowBox[{
+      "3.385595000000000000000026`4.29804285290057*^6", " ", "Meter"}], 
+      RowBox[{"6.41693`6.*^23", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"5029.946404185913`", " ", "Meter"}], "Second"]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Jupiter\"\>", 
+      RowBox[{"6.9173`5.*^7", " ", "Meter"}], 
+      RowBox[{"1.89813`6.*^27", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"60521.80612267209`", " ", "Meter"}], "Second"]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Saturn\"\>", 
+      RowBox[{"5.7316`5.*^7", " ", "Meter"}], 
+      RowBox[{"5.68319`6.*^26", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"36381.06094012048`", " ", "Meter"}], "Second"]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Uranus\"\>", 
+      RowBox[{"2.5266`5.*^7", " ", "Meter"}], 
+      RowBox[{"8.68103`6.*^25", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"21415.8142623084`", " ", "Meter"}], "Second"]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Neptune\"\>", 
+      RowBox[{"2.45525`5.*^7", " ", "Meter"}], 
+      RowBox[{"1.0241`6.*^26", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"23596.11652453008`", " ", "Meter"}], "Second"]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Moon\"\>", 
+      RowBox[{"1.7375`5.*^6", " ", "Meter"}], 
+      RowBox[{
+      "7.3459006322855173653772`4.995678626217362*^22", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"2375.6219371250354`", " ", "Meter"}], "Second"]},
+     {
+      TagBox[
+       StyleBox["\<\"\[Null]\"\>",
+        ShowStringCharacters->False],
+       StyleForm[#, ShowStringCharacters -> False]& ], "\<\"Sun\"\>", 
+      RowBox[{"6.957`4.*^8", " ", "Meter"}], 
+      RowBox[{"1.988435`7.*^30", " ", "Kilogram"}], 
+      FractionBox[
+       RowBox[{"617677.6778558799`", " ", "Meter"}], "Second"]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {False, True, {False}, False}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[1.2]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "Nome do Corpo", "Raio dos Corpos", "Massa dos Corpos", 
+       "Velocidade"}, {}}, TableHeadings -> {Right, Bottom}, TableDirections -> 
+    Row]]]], "Output",
+ CellChangeTimes->{
+  3.684715000074879*^9, 3.6847153012949486`*^9, {3.6847153709921865`*^9, 
+   3.6847153758016067`*^9}, 3.6847170297378664`*^9, {3.6847170917768407`*^9, 
+   3.684717099216034*^9}, 3.684717738202085*^9, {3.684717835387455*^9, 
+   3.6847178520052724`*^9}, 3.684718128156609*^9, 3.6847187272109528`*^9, 
+   3.68479467692824*^9, 3.6847947466232905`*^9, 3.6850980733615885`*^9, 
+   3.6850982528487005`*^9, {3.6850985767735395`*^9, 3.685098599398033*^9}, {
+   3.6851103909941025`*^9, 3.6851104016030645`*^9}, 3.6851135671149545`*^9, 
+   3.6851136727948008`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"dadosGrafico", " ", "=", " ", 
+   RowBox[{"MapThread", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"#1", ",", "#2", ",", " ", "#3"}], "}"}], " ", "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"RaioCorpos", " ", ",", "MassaCorpos", " ", ",", 
+       RowBox[{"Velocidades", "*", 
+        RowBox[{"Second", " ", "/", " ", "Meter"}]}]}], "}"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6847169813258686`*^9, 3.6847169984987745`*^9}, {
+   3.684717192401104*^9, 3.68471719348586*^9}, {3.6847174139763107`*^9, 
+   3.684717446331275*^9}, {3.684717526976326*^9, 3.684717531837306*^9}, {
+   3.684717985295599*^9, 3.684717988899179*^9}, {3.6847187605162897`*^9, 
+   3.6847187895839367`*^9}, {3.6847946989409714`*^9, 
+   3.6847947082692566`*^9}, {3.684794758140482*^9, 3.6847947626018248`*^9}, 
+   3.6850985883291454`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"dadosGraficoLog", " ", "=", " ", 
+   RowBox[{"Log10", "[", "dadosGrafico", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6847947716962976`*^9, 3.684794785667322*^9}, 
+   3.6850985906858487`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPointPlot3D", "[", " ", 
+  RowBox[{"dadosGraficoLog", ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"AbsolutePointSize", "[", "7", "]"}], "}"}]}], ",", " ", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Raio(m)\>\"", ",", "\"\<Massa(Kg)\>\"", ",", 
+      "\"\<Velocidade de escape(m/s)\>\""}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.684718809245947*^9, 3.684718814044967*^9}, {
+   3.6847947202575274`*^9, 3.684794726685024*^9}, {3.6847947900314255`*^9, 
+   3.6847947928144045`*^9}, {3.684794840424893*^9, 3.6847948495134754`*^9}, {
+   3.6847951168621297`*^9, 3.6847951850359845`*^9}, {3.6847952796794233`*^9, 
+   3.6847953205750723`*^9}, 3.684798473345725*^9, {3.6851113473510313`*^9, 
+   3.685111371395198*^9}, {3.68511140706009*^9, 3.685111489735711*^9}, {
+   3.685111551959281*^9, 3.6851116164468355`*^9}, {3.685111758978*^9, 
+   3.6851117639696493`*^9}, {3.6851118585830464`*^9, 3.685111936063739*^9}, {
+   3.685112032847695*^9, 3.685112064106823*^9}, {3.6851121160030613`*^9, 
+   3.6851121570195417`*^9}, {3.6851122875041127`*^9, 
+   3.6851122893294106`*^9}, {3.6851123335116644`*^9, 
+   3.6851123609751997`*^9}, {3.6851124073621664`*^9, 3.685112450250126*^9}, {
+   3.6851126557155466`*^9, 3.6851126880601625`*^9}, {3.6851127199022107`*^9, 
+   3.6851127257033377`*^9}, {3.685112757748418*^9, 3.685112806756172*^9}, {
+   3.6851129703452168`*^9, 3.685113033278018*^9}, {3.685113073749243*^9, 
+   3.685113082286253*^9}, {3.685113837375329*^9, 3.6851138388344636`*^9}}],
+
+Cell[BoxData[
+ Graphics3DBox[
+  {RGBColor[0.3315753, 0.4561011, 0.6388182], AbsolutePointSize[7], 
+   Point3DBox[{{6.387336426193337, 23.518650786879245`, 3.628374389306174}, {
+    6.78188815514434, 24.687289899698552`, 4.015418081240326}, {
+    6.803965178964191, 24.776134241358747`, 4.048801740160498}, {
+    6.52963500463379, 23.80732730175347, 3.7015633575230606`}, {
+    7.839936611231559, 27.278325953270006`, 4.781911879982443}, {
+    7.758275874004725, 26.754592175589373`, 4.560875359755546}, {
+    7.402536491803908, 25.938571257063355`, 4.330734591592943}, {
+    7.390095719714655, 26.010342366139568`, 4.372840532175677}, {
+    6.239924813262151, 22.866045049364303`, 3.375777327014297}, {
+    8.84242200335765, 30.29851139889117, 5.790761906729979}}]},
+  Axes->True,
+  AxesLabel->{
+    FormBox["\"Raio(m)\"", TraditionalForm], 
+    FormBox["\"Massa(Kg)\"", TraditionalForm], 
+    FormBox["\"Velocidade de escape(m/s)\"", TraditionalForm]},
+  BoxRatios->{1, 1, 0.4},
+  FaceGridsStyle->Automatic,
+  ImageSize->{870.7697699558878, 377.},
+  PlotRange->{{6.239924813262151, 8.84242200335765}, {22.866045049364303`, 
+    30.29851139889117}, Automatic},
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.02]}, {Automatic, Automatic}},
+  Ticks->{Automatic, Automatic, Automatic},
+  ViewPoint->{1.496399921968069, -3.025249978542866, -0.2421772922062455},
+  ViewVertical->{0.2779047161662763, -0.5846559957597671, 
+   1.905495892403564}]], "Output",
+ CellChangeTimes->{3.6851130339475117`*^9, 3.685113082933713*^9}]
+}, Open  ]]
+},
+WindowSize->{1349, 631},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 162, 2, 30, "Text"],
+Cell[723, 24, 188, 4, 68, "Input"],
+Cell[914, 30, 674, 10, 49, "Text"],
+Cell[1591, 42, 422, 12, 50, "Input"],
+Cell[2016, 56, 270, 5, 30, "Text"],
+Cell[CellGroupData[{
+Cell[2311, 65, 209, 6, 50, "Input"],
+Cell[2523, 73, 302, 9, 49, "Output"]
+}, Open  ]],
+Cell[2840, 85, 574, 9, 49, "Text"],
+Cell[3417, 96, 170, 3, 30, "Input"],
+Cell[3590, 101, 2113, 46, 142, "Input"],
+Cell[5706, 149, 345, 6, 30, "Text"],
+Cell[CellGroupData[{
+Cell[6076, 159, 257, 7, 47, "Input"],
+Cell[6336, 168, 237, 9, 57, "Output"]
+}, Open  ]],
+Cell[6588, 180, 249, 4, 47, "Input"],
+Cell[6840, 186, 587, 13, 30, "Input"],
+Cell[7430, 201, 261, 5, 30, "Text"],
+Cell[7694, 208, 467, 11, 30, "Input"],
+Cell[8164, 221, 673, 14, 47, "Input"],
+Cell[8840, 237, 722, 14, 47, "Input"],
+Cell[CellGroupData[{
+Cell[9587, 255, 882, 19, 84, "Input"],
+Cell[10472, 276, 5485, 137, 404, "Output"]
+}, Open  ]],
+Cell[15972, 416, 881, 19, 47, "Input"],
+Cell[16856, 437, 231, 5, 47, "Input"],
+Cell[CellGroupData[{
+Cell[17112, 446, 1574, 26, 47, "Input"],
+Cell[18689, 474, 1569, 32, 425, "Output"]
+}, Open  ]]
+}
+]
+*)
+
